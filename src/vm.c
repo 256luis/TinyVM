@@ -205,6 +205,56 @@ void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand)
                 vm->ip = operand.u;
             }
         }
+
+        // perform bitwise AND to top two items on the stack
+        case AND: {
+            // pop top two items from top of stack
+            uint32_t operand_1 = stack_pop(vm, vm->data_stack).u;
+            uint32_t operand_2 = stack_pop(vm, vm->data_stack).u;
+
+            // perform bitwise AND
+            Dword result = { .u = operand_1 & operand_2};
+
+            // push result to stack
+            stack_push(vm, vm->data_stack, result);
+        } break;
+
+        // perform bitwise OR to top two items on the stack
+        case OR: {
+            // pop top two items from top of stack
+            uint32_t operand_1 = stack_pop(vm, vm->data_stack).u;
+            uint32_t operand_2 = stack_pop(vm, vm->data_stack).u;
+
+            // perform bitwise OR
+            Dword result = { .u = operand_1 | operand_2};
+
+            // push result to stack
+            stack_push(vm, vm->data_stack, result);
+        } break;
+
+        // perform bitwise NOT on top item on the stack
+        case NOT: {
+            // pop from top of stack
+            uint32_t top = stack_pop(vm, vm->data_stack).u;
+
+            // perform bitwise NOT
+            Dword result = { .u = ~top};
+
+            // push result to stack
+            stack_push(vm, vm->data_stack, result);
+        } break;
+
+        case XOR: {
+            // pop top two items from top of stack
+            uint32_t operand_1 = stack_pop(vm, vm->data_stack).u;
+            uint32_t operand_2 = stack_pop(vm, vm->data_stack).u;
+
+            // perform bitwise XOR
+            Dword result = { .u = operand_1 ^ operand_2 };
+
+            // push result to stack
+            stack_push(vm, vm->data_stack, result);
+        } break;
         
         default: {
             assert(0 && "unimplemented");
