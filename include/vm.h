@@ -42,5 +42,5 @@ typedef enum Opcode
 
 void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand);
 void vm_dump(VM* vm);
-
+    
 #endif // VM_H
