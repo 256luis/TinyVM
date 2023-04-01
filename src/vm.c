@@ -256,6 +256,12 @@ void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand)
             // push result to stack
             data_stack_push(vm, result);
         } break;
+
+        // pop top of stack then print it as char 
+        case OUT: {
+            char c = data_stack_pop(vm).u;
+            putchar(c);
+        } break;
         
         default: {
             assert(0 && "unimplemented or invalid");

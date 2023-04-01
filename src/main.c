@@ -16,28 +16,34 @@ int main()
 {
     VM* vm = &(VM){0};
 
-    vm_execute_instruction(vm, PUSHL, DWORD_INT(1));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT(2));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT(3));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT(4));
-    vm_execute_instruction(vm, POP, DWORD_INT(0x09));
-    vm_execute_instruction(vm, ADDI, DWORD_ZERO);
-    vm_execute_instruction(vm, SUBI, DWORD_ZERO);
-    vm_execute_instruction(vm, PUSHL, DWORD_INT(2));
-    vm_execute_instruction(vm, SUBI, DWORD_ZERO);    
-    vm_execute_instruction(vm, PUSHL, DWORD_INT(0xFFFFFFFF));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT(0xFF00F0FF));
-    vm_execute_instruction(vm, AND, DWORD_ZERO);
-    vm_execute_instruction(vm, AND, DWORD_ZERO);
-    vm_execute_instruction(vm, PUSHL, DWORD_INT(0xFF000000));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT(0x00FF0000));
-    vm_execute_instruction(vm, OR, DWORD_ZERO);    
-    vm_execute_instruction(vm, PUSHL, DWORD_FLOAT(1.0));    
-    vm_execute_instruction(vm, PUSHL, DWORD_FLOAT(1.1));    
-    vm_execute_instruction(vm, PUSHL, DWORD_FLOAT(1.2));    
-    vm_execute_instruction(vm, PUSHL, DWORD_FLOAT(1.3));    
-    vm_execute_instruction(vm, PUSHL, DWORD_FLOAT(1.354));    
-        
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('\n'));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('!'));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('D'));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('L'));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('R'));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('O'));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('W'));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT(' '));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('O'));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('L'));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('L'));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('E'));
+    vm_execute_instruction(vm, PUSHL, DWORD_INT('H'));
+
+    vm_execute_instruction(vm, OUT, DWORD_INT('H'));
+    vm_execute_instruction(vm, OUT, DWORD_INT('E'));
+    vm_execute_instruction(vm, OUT, DWORD_INT('L'));
+    vm_execute_instruction(vm, OUT, DWORD_INT('L'));
+    vm_execute_instruction(vm, OUT, DWORD_INT('0'));
+    vm_execute_instruction(vm, OUT, DWORD_INT(' '));
+    vm_execute_instruction(vm, OUT, DWORD_INT('W'));
+    vm_execute_instruction(vm, OUT, DWORD_INT('O'));
+    vm_execute_instruction(vm, OUT, DWORD_INT('R'));
+    vm_execute_instruction(vm, OUT, DWORD_INT('L'));
+    vm_execute_instruction(vm, OUT, DWORD_INT('D'));
+    vm_execute_instruction(vm, OUT, DWORD_INT('!'));
+    vm_execute_instruction(vm, OUT, DWORD_INT('\n'));
+    
     vm_dump(vm);
 
     return 0;

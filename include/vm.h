@@ -37,6 +37,8 @@ typedef enum Opcode
     JMP, JZ, JNZ, JG, JGE, JL, JLE,
     AND, OR, NOT, XOR,
 
+    OUT,
+    
     OPCODE_COUNT
 } Opcode;
 
