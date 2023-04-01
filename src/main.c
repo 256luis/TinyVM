@@ -16,33 +16,41 @@ int main()
 {
     VM* vm = &(VM){0};
 
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('\n'));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('!'));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('D'));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('L'));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('R'));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('O'));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('W'));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT(' '));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('O'));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('L'));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('L'));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('E'));
-    vm_execute_instruction(vm, PUSHL, DWORD_INT('H'));
+    Instruction program[] = {
+        {PUSHL, DWORD_INT('\n')},
+        {PUSHL, DWORD_INT('!')},
+        {PUSHL, DWORD_INT('d')},
+        {PUSHL, DWORD_INT('l')},
+        {PUSHL, DWORD_INT('r')},
+        {PUSHL, DWORD_INT('o')},
+        {PUSHL, DWORD_INT('W')},
+        {PUSHL, DWORD_INT(' ')},
+        {PUSHL, DWORD_INT(',')},
+        {PUSHL, DWORD_INT('o')},
+        {PUSHL, DWORD_INT('l')},
+        {PUSHL, DWORD_INT('l')},
+        {PUSHL, DWORD_INT('e')},
+        {PUSHL, DWORD_INT('H')},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+    };
 
-    vm_execute_instruction(vm, OUT, DWORD_INT('H'));
-    vm_execute_instruction(vm, OUT, DWORD_INT('E'));
-    vm_execute_instruction(vm, OUT, DWORD_INT('L'));
-    vm_execute_instruction(vm, OUT, DWORD_INT('L'));
-    vm_execute_instruction(vm, OUT, DWORD_INT('0'));
-    vm_execute_instruction(vm, OUT, DWORD_INT(' '));
-    vm_execute_instruction(vm, OUT, DWORD_INT('W'));
-    vm_execute_instruction(vm, OUT, DWORD_INT('O'));
-    vm_execute_instruction(vm, OUT, DWORD_INT('R'));
-    vm_execute_instruction(vm, OUT, DWORD_INT('L'));
-    vm_execute_instruction(vm, OUT, DWORD_INT('D'));
-    vm_execute_instruction(vm, OUT, DWORD_INT('!'));
-    vm_execute_instruction(vm, OUT, DWORD_INT('\n'));
+    for (int i = 0; i < sizeof(program)/sizeof(program[0]); i++)
+    {
+        vm_execute_instruction(vm, program[i]);
+    }
     
     vm_dump(vm);
 

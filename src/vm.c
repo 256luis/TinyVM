@@ -23,27 +23,27 @@ static void data_stack_push(VM* vm, Dword value)
     vm->data_stack[vm->dsp] = value;
 }
 
-void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand)
+void vm_execute_instruction(VM* vm, Instruction inst)
 {
-    switch (opcode)
+    switch (inst.opcode)
     {
         // push literal value to the data stack
-        // the operand is the literal value
+        // the inst.operand is the literal value
         case PUSHL: {
-            data_stack_push(vm, operand);
+            data_stack_push(vm, inst.operand);
         } break;
 
         // get value stored at memory address and push it to the data stack
-        // the operand is the memory address
+        // the inst.operand is the memory address
         case PUSHA: {
-            Dword value = vm->memory[operand.u];
+            Dword value = vm->memory[inst.operand.u];
             data_stack_push(vm, value);
         } break;
 
         // pop top of the stack to a specified memory address
-        // the operand is the memory address where the popped value will be stored
+        // the inst.operand is the memory address where the popped value will be stored
         case POP:{
-            vm->memory[operand.u] = data_stack_pop(vm);
+            vm->memory[inst.operand.u] = data_stack_pop(vm);
         } break;
 
         // add the top two values from the top of the stack as integers
@@ -155,14 +155,14 @@ void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand)
 
         // unconditional jump to instruction address
         case JMP: {
-            vm->ip = operand.u;
+            vm->ip = inst.operand.u;
         } break;
 
         // jump if top of stack == 0
         case JZ: {
             if (data_stack_peek(vm).u == 0)
             {
-                vm->ip = operand.u;
+                vm->ip = inst.operand.u;
             }
         } break;
 
@@ -170,7 +170,7 @@ void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand)
         case JNZ: {
             if (data_stack_peek(vm).u != 0)
             {
-                vm->ip = operand.u;
+                vm->ip = inst.operand.u;
             }
         } break;
         
@@ -178,7 +178,7 @@ void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand)
         case JG: {
             if (data_stack_peek(vm).u > 0)
             {
-                vm->ip = operand.u;
+                vm->ip = inst.operand.u;
             }
         } break;
 
@@ -186,7 +186,7 @@ void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand)
         case JGE: {
             if (data_stack_peek(vm).u >= 0)
             {
-                vm->ip = operand.u;
+                vm->ip = inst.operand.u;
             }
         } break;
 
@@ -194,7 +194,7 @@ void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand)
         case JL: {
             if (data_stack_peek(vm).u < 0)
             {
-                vm->ip = operand.u;
+                vm->ip = inst.operand.u;
             }
         }
 
@@ -202,7 +202,7 @@ void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand)
         case JLE: {
             if (data_stack_peek(vm).u <= 0)
             {
-                vm->ip = operand.u;
+                vm->ip = inst.operand.u;
             }
         } break;
 
@@ -251,7 +251,7 @@ void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand)
             uint32_t operand_2 = data_stack_pop(vm).u;
 
             // perform bitwise XOR
-            Dword result = { .u = operand_1 ^ operand_2 };
+            Dword result = { .u = operand_1 ^ operand_2};
 
             // push result to stack
             data_stack_push(vm, result);

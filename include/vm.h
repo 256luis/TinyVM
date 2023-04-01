@@ -42,7 +42,13 @@ typedef enum Opcode
     OPCODE_COUNT
 } Opcode;
 
-void vm_execute_instruction(VM* vm, Opcode opcode, Dword operand);
+typedef struct Instruction
+{
+    Opcode opcode;
+    Dword operand;
+} Instruction;
+
+void vm_execute_instruction(VM* vm, Instruction inst);
 void vm_dump(VM* vm);
     
 #endif // VM_H
