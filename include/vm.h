@@ -12,6 +12,8 @@
 
 typedef struct VM
 {
+    bool should_halt;
+    
     // main memory
     Dword memory[MEMORY_SIZE];
 
@@ -38,6 +40,8 @@ typedef enum Opcode
     AND, OR, NOT, XOR,
 
     OUT,
+
+    HALT,
     
     OPCODE_COUNT
 } Opcode;

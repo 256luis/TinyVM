@@ -45,11 +45,12 @@ int main()
         {OUT, DWORD_ZERO},
         {OUT, DWORD_ZERO},
         {OUT, DWORD_ZERO},
+        {HALT, DWORD_ZERO}
     };
 
-    for (int i = 0; i < sizeof(program)/sizeof(program[0]); i++)
+    while (!vm->should_halt)
     {
-        vm_execute_instruction(vm, program[i]);
+        vm_execute_instruction(vm, program[vm->ip]);
     }
     
     vm_dump(vm);

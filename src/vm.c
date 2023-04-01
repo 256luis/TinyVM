@@ -262,6 +262,11 @@ void vm_execute_instruction(VM* vm, Instruction inst)
             char c = data_stack_pop(vm).u;
             putchar(c);
         } break;
+
+        // kill the vm
+        case HALT: {
+            vm->should_halt = true;
+        } break;
         
         default: {
             assert(0 && "unimplemented or invalid");
