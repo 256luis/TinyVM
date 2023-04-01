@@ -32,7 +32,12 @@ int main()
     vm_execute_instruction(vm, PUSHL, DWORD_INT(0xFF000000));
     vm_execute_instruction(vm, PUSHL, DWORD_INT(0x00FF0000));
     vm_execute_instruction(vm, OR, DWORD_ZERO);    
-    
+    vm_execute_instruction(vm, PUSHL, DWORD_FLOAT(1.0));    
+    vm_execute_instruction(vm, PUSHL, DWORD_FLOAT(1.1));    
+    vm_execute_instruction(vm, PUSHL, DWORD_FLOAT(1.2));    
+    vm_execute_instruction(vm, PUSHL, DWORD_FLOAT(1.3));    
+    vm_execute_instruction(vm, PUSHL, DWORD_FLOAT(1.354));    
+        
     vm_dump(vm);
 
     return 0;
