@@ -160,7 +160,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
 
         // jump if top of stack == 0
         case JZ: {
-            if (data_stack_peek(vm).u == 0)
+            if (data_stack_peek(vm).s == 0)
             {
                 vm->ip = inst.operand.u;
             }
@@ -168,7 +168,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
 
         // jump if top of stack != 0
         case JNZ: {
-            if (data_stack_peek(vm).u != 0)
+            if (data_stack_peek(vm).s != 0)
             {
                 vm->ip = inst.operand.u;
             }
@@ -176,7 +176,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
         
         // jump if top of stack > 0
         case JG: {
-            if (data_stack_peek(vm).u > 0)
+            if (data_stack_peek(vm).s > 0)
             {
                 vm->ip = inst.operand.u;
             }
@@ -184,7 +184,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
 
         // jump if top of stack >= 0
         case JGE: {
-            if (data_stack_peek(vm).u >= 0)
+            if (data_stack_peek(vm).s >= 0)
             {
                 vm->ip = inst.operand.u;
             }
@@ -192,7 +192,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
 
         // jump if top of stack < 0
         case JL: {
-            if (data_stack_peek(vm).u < 0)
+            if (data_stack_peek(vm).s < 0)
             {
                 vm->ip = inst.operand.u;
             }
@@ -200,7 +200,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
 
         // jump if top of stack <= 0
         case JLE: {
-            if (data_stack_peek(vm).u <= 0)
+            if (data_stack_peek(vm).s <= 0)
             {
                 vm->ip = inst.operand.u;
             }

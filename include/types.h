@@ -9,6 +9,7 @@ typedef union Dword
 {
     float f;
     uint32_t u;
+    int32_t s;
 } Dword;
 
 #endif // TYPES_H
