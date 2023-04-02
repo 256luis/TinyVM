@@ -75,14 +75,11 @@ void vm_execute_instruction(VM* vm, Instruction inst)
         // subtract the top two values from the top of the stack as integers
         case SUBI: {
             // pop two values from the stack
-            uint32_t subtrahend = data_stack_pop(vm).u;
-            uint32_t minuend = data_stack_pop(vm).u;
+            int32_t subtrahend = data_stack_pop(vm).s;
+            int32_t minuend = data_stack_pop(vm).s;
             
-            // get two's complement of minuend
-            minuend = (minuend ^ 0xFFFFFFFF) + 1;
-            
-            // add the subtrahend and the minuend
-            Dword difference = { .u = subtrahend + minuend };
+            // subtract
+            Dword difference = { .s = subtrahend - minuend };
             
             // push difference to the stack
             data_stack_push(vm, difference);
