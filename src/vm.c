@@ -70,7 +70,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
 
             // push the sum to the stack
             data_stack_push(vm, sum);
-        }
+        } break;
       
         // subtract the top two values from the top of the stack as integers
         case SUBI: {
@@ -196,7 +196,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
             {
                 vm->ip = inst.operand.u;
             }
-        }
+        } break;
 
         // jump if top of stack <= 0
         case JLE: {
