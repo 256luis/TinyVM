@@ -71,16 +71,16 @@ void vm_execute_instruction(VM* vm, Instruction inst)
             // push the sum to the stack
             data_stack_push(vm, sum);
         } break;
-      
+
         // subtract the top two values from the top of the stack as integers
         case SUBI: {
             // pop two values from the stack
             int32_t subtrahend = data_stack_pop(vm).s;
             int32_t minuend = data_stack_pop(vm).s;
-            
+
             // subtract
             Dword difference = { .s = subtrahend - minuend };
-            
+
             // push difference to the stack
             data_stack_push(vm, difference);
         } break;
@@ -123,7 +123,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
             // push product to stack
             data_stack_push(vm, product);
         } break;
-        
+
         // divide the top two values from the top of the stack as integers
         case DIVI: {
             // pop two values from the stack
@@ -136,7 +136,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
             // push quotient to the stack
             data_stack_push(vm, quotient);
         } break;
-        
+
         // divide the top two values from the top of the stack as integers
         case DIVF: {
             // pop two values from the stack
@@ -170,7 +170,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
                 vm->ip = inst.operand.u;
             }
         } break;
-        
+
         // jump if top of stack > 0
         case JG: {
             if (data_stack_peek(vm).s > 0)
@@ -240,7 +240,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
             // push result to stack
             data_stack_push(vm, result);
         } break;
-        
+
         // perform bitwise XOR on top item on the stack
         case XOR: {
             // pop top two items from top of stack
@@ -254,7 +254,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
             data_stack_push(vm, result);
         } break;
 
-        // pop top of stack then print it as char 
+        // pop top of stack then print it as char
         case OUT: {
             char c = data_stack_pop(vm).u;
             putchar(c);
@@ -264,7 +264,7 @@ void vm_execute_instruction(VM* vm, Instruction inst)
         case HALT: {
             vm->should_halt = true;
         } break;
-        
+
         default: {
             assert(0 && "unimplemented or invalid");
         }
@@ -297,7 +297,7 @@ void vm_dump(VM* vm)
     {
         printf("%08X\n", vm->memory[i].u);
     }
-    
+
     // print dsp and rsp and ip
     printf("\nDSP: %04X\nRSP: %04X\nIP: %04X\n\n", vm->dsp, vm->rsp, vm->ip);
 }

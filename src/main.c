@@ -52,7 +52,7 @@ int main()
     {
         vm_execute_instruction(vm, program[vm->ip]);
     }
-    
+
     vm_dump(vm);
 
     return 0;

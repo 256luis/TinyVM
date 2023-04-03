@@ -13,7 +13,7 @@
 typedef struct VM
 {
     bool should_halt;
-    
+
     // main memory
     Dword memory[MEMORY_SIZE];
 
@@ -42,7 +42,7 @@ typedef enum Opcode
     OUT,
 
     HALT,
-    
+
     OPCODE_COUNT
 } Opcode;
 
@@ -54,5 +54,5 @@ typedef struct Instruction
 
 void vm_execute_instruction(VM* vm, Instruction inst);
 void vm_dump(VM* vm);
-    
+
 #endif // VM_H
