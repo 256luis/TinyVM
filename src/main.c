@@ -7,16 +7,21 @@
 #define DWORD_INT(num) (Dword){ .u = num }
 #define DWORD_FLOAT(num) (Dword){ .f = num }
 
-/* Dword dword_int(int num) */
-/* { */
-/*     return (Dword){ .u = num }; */
-/* } */
-
 int main()
 {
     VM* vm = &(VM){0};
 
     Instruction program[] = {
+        {CALL, DWORD_INT(10)},
+        {PUSHL, DWORD_INT('\n')},
+        {PUSHL, DWORD_INT('a')},
+        {PUSHL, DWORD_INT('b')},
+        {PUSHL, DWORD_INT('c')},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {OUT, DWORD_ZERO},
+        {HALT, DWORD_ZERO},
         {PUSHL, DWORD_INT('\n')},
         {PUSHL, DWORD_INT('!')},
         {PUSHL, DWORD_INT('d')},
@@ -45,7 +50,7 @@ int main()
         {OUT, DWORD_ZERO},
         {OUT, DWORD_ZERO},
         {OUT, DWORD_ZERO},
-        {HALT, DWORD_ZERO}
+        {RET, DWORD_ZERO},
     };
 
     while (!vm->should_halt)

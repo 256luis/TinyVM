@@ -254,6 +254,24 @@ void vm_execute_instruction(VM* vm, Instruction inst)
             data_stack_push(vm, result);
         } break;
 
+        // call a procedure
+        // operand is the instruction address of the procedure
+        case CALL: {
+            // push ip to the return stack
+            vm->rsp++;
+            vm->return_stack[vm->rsp] = vm->ip;
+
+            // jump to the instruction address of the procedure
+            vm->ip = inst.operand.s - 1;
+        } break;
+
+        // jump to where the procedure was called
+        case RET: {
+            // pop the return stack
+            vm->ip = vm->return_stack[vm->rsp];
+            vm->rsp--;
+        } break;
+        
         // pop top of stack then print it as char
         case OUT: {
             char c = data_stack_pop(vm).u;

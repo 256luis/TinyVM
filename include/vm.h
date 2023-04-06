@@ -38,9 +38,8 @@ typedef enum Opcode
     DIVI, DIVF,
     JMP, JZ, JNZ, JG, JGE, JL, JLE,
     AND, OR, NOT, XOR,
-
+    CALL, RET,
     OUT,
-
     HALT,
 
     OPCODE_COUNT
