@@ -9,6 +9,7 @@
 #define DATA_STACK_SIZE 512
 #define RETURN_STACK_SIZE 128
 #define MEMORY_SIZE 1024
+#define INSTRUCTION_SIZE 5
 
 typedef struct VM
 {

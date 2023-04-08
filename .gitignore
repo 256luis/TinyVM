@@ -2,3 +2,5 @@
 compile_flags.txt
 build/
 TAGS
+tags.bat
+*.bin
